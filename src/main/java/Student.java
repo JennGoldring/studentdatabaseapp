@@ -34,20 +34,23 @@ public class Student {
 
     // Enroll in courses
     public void enroll() {
+        Scanner in = new Scanner(System.in);
+        String course;
         // get inside a loop, user hits Q when they are done enrolling
         do {
             System.out.print("Enter course to enroll (Q to quit): ");
-            Scanner in = new Scanner(System.in);
-            String course = in.nextLine();
-            if (!course.equals("Q")) {
+            course = in.nextLine();
+            if (!course.toLowerCase().equals("q")) {
                 courses = courses + "\n  " + course;
                 tuitionBalance = tuitionBalance + costOfCourse;
             }
-            else {
-                break;
-            }
-        } while (1 != 0);
+        } while (!course.toLowerCase().equals("q"));
     }
+//            else {
+//                break;
+//            }
+//        } while (1 != 0);
+//    }
 
         // View Balance
     public void viewBalance() {
@@ -56,6 +59,7 @@ public class Student {
 
         // Pay Tuition
     public void payTuition() {
+        viewBalance();
         System.out.println("Enter your payment: $");
         Scanner in = new Scanner(System.in);
         int payment = in.nextInt();
@@ -67,8 +71,8 @@ public class Student {
         // Show status
     public String toString() {
         return "Name: " + firstName + " " + lastName +
-                "\nGrade Level: " +gradeYear +
-                "\nStudent ID: " +
+                "\nGrade Level: " + gradeYear +
+                "\nStudent ID: " + studentID +
                 "\nCourses Enrolled: " + courses +
                 "\nBalance: $ " + tuitionBalance;
 
